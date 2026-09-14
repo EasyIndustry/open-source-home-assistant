@@ -3,6 +3,8 @@
 Asistente de voz **100 % local y en español** para domótica, **sin LLM ni nube**, con un banco de pruebas web
 que simula una casa completa para validarlo antes de instalarlo en una casa real.
 
+![Simulador: una orden hablada recorre el pipeline y actúa sobre la casa 3D](docs/img/ui-principal.png)
+
 ```
 micrófono ─▶ wake word ─▶ STT ─────────────▶ intención ─────────▶ acción ─▶ voz
             openWakeWord  Whisper / Vosk     hassil / fuzzy       HTTP     Piper
@@ -40,6 +42,10 @@ Decí **"hey Jarvis"** (o la wake word elegida en la web) y una orden: *"prendé
 Sin micrófono, escribí la orden en la barra inferior de la web.
 
 ## Qué se puede probar en el simulador
+
+| Automatizaciones: humo en la cocina → sirena y apertura de ventana | QA: matriz de motores STT × intención |
+|---|---|
+| ![Alarma por humo en la cocina](docs/img/ui-alarma.png) | ![Benchmark de motores](docs/img/ui-qa.png) |
 
 - **Pipeline en vivo:** score del wake word, grabación, transcripción, intención con slots resaltados, dispositivos afectados y latencia de cada etapa contra el objetivo (< 600 ms).
 - **Casa 3D:** luces, persianas y ventanas motorizadas, portón, aire, ventiladores, teles, riego, cerradura y alarma; satélites de micrófono por ambiente.
