@@ -48,3 +48,21 @@ Sin micrófono, escribí la orden en la barra inferior de la web.
 - **Audio real:** en `qpwgraph` se conectan los nodos `voz-local-mic` y `voz-local-tts` al micrófono y a los parlantes que quieras.
 
 Detalles de cada parte en [`voz-local/README.md`](voz-local/README.md) y [`web-app-assistant/README.md`](web-app-assistant/README.md).
+
+## Licencia
+
+El código de este repositorio se publica bajo la [licencia MIT](LICENSE).
+
+### Licencias de terceros
+
+Las dependencias y los modelos **no están incluidos en el repo**: se instalan con `pip` y `descargar_modelos.sh`,
+y cada uno conserva su propia licencia. Tres de ellos tienen condiciones a tener en cuenta:
+
+| componente | licencia | nota |
+|---|---|---|
+| faster-whisper, CTranslate2, onnxruntime, rapidfuzz, PyYAML, Three.js, modelos Whisper | MIT | — |
+| hassil, openWakeWord (código), Vosk y su modelo `small-es-0.42` | Apache-2.0 | — |
+| numpy, scipy, scikit-learn, joblib | BSD | — |
+| **piper-tts** | **GPL-3.0** | Quien distribuya el conjunto armado con Piper debe cumplir la GPL. |
+| **Voz `es_AR-daniela-high`** | dataset **CC BY-SA 4.0** ([OpenSLR 61](https://www.openslr.org/61/)) | Requiere atribución; los derivados de la voz se comparten con la misma licencia. |
+| **Wake words pre-entrenadas de openWakeWord** (`hey_jarvis`, `alexa`, …) | **CC BY-NC-SA 4.0** | **Uso no comercial.** Para un uso comercial, entrená una wake word propia (`voz-local/entrenar-wakeword/`). |
