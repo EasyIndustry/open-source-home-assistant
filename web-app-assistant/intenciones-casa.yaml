@@ -1,0 +1,172 @@
+# Intenciones de la casa simulada (formato hassil).
+# Es un superconjunto de voz-local/intenciones.yaml: las 7 intenciones originales
+# van sin cambios y se agregan las de dispositivos típicos de una casa domótica.
+# Las plantillas van SIN tildes: el texto se normaliza antes de reconocer.
+
+language: es
+
+expansion_rules:
+  art: "(el|la|los|las|al|a la)"
+  de: "(del|de la|de los|de las|en el|en la|en|de)"
+  prender: "(prender|encender|activar|poner|prende|prendeme|encende|enciende|encendeme|activa|pone|poneme|pon)"
+  apagar: "(apagar|desactivar|cortar|apaga|apagame|desactiva|corta)"
+  abrir: "(abrir|abri|abre|abrime)"
+  cerrar: "(cerrar|cerra|cierra|cerrame)"
+  porfa: "[por favor|porfa]"
+  lugar: "[<de> [<art>] {area}]"
+
+intents:
+  # --- originales (voz-local/intenciones.yaml) ---
+  EncenderDispositivo:
+    data:
+      - sentences:
+          - "<prender> [<art>] {dispositivo} [<de> [<art>] {area}] <porfa>"
+          - "<prender> [<art>] {dispositivo} <porfa>"
+  ApagarDispositivo:
+    data:
+      - sentences:
+          - "<apagar> [<art>] {dispositivo} [<de> [<art>] {area}] <porfa>"
+  AjustarBrillo:
+    data:
+      - sentences:
+          - "(poner|ajustar|dejar|pone|poneme|ajusta|deja|pon) [<art>] (luz|luces) [<de> [<art>] {area}] (al|a|en) {brillo} [%|por ciento] <porfa>"
+          - "brillo [<de> [<art>] {area}] (al|a|en) {brillo} [%|por ciento]"
+  FijarTemperatura:
+    data:
+      - sentences:
+          - "(poner|fijar|dejar|pone|poneme|pon|deja|fija|configura) [<art>] (aire|calefaccion|temperatura|termostato) [<de> [<art>] {area}] (a|en) {temperatura} [grados]"
+  SubirPersiana:
+    data:
+      - sentences:
+          - "(subir|abrir|levantar|subi|sube|abri|abre|levanta) [<art>] (persiana|persianas|cortina|cortinas) [<de> [<art>] {area}]"
+  BajarPersiana:
+    data:
+      - sentences:
+          - "(bajar|cerrar|baja|bajame|cerra|cierra) [<art>] (persiana|persianas|cortina|cortinas) [<de> [<art>] {area}]"
+  ConsultarHora:
+    data:
+      - sentences:
+          - "(que hora[s] [es]|decime la hora|dime la hora)"
+
+  # --- extensiones de la casa simulada ---
+  AbrirVentana:
+    data:
+      - sentences:
+          - "<abrir> [<art>] (ventana|ventanas|ventanal) <lugar> <porfa>"
+  CerrarVentana:
+    data:
+      - sentences:
+          - "<cerrar> [<art>] (ventana|ventanas|ventanal) <lugar> <porfa>"
+  TrabarPuerta:
+    data:
+      - sentences:
+          - "(trabar|traba|trabame|bloquear|bloquea) [<art>] puerta [principal|de entrada] <porfa>"
+          - "<cerrar> [<art>] puerta [principal|de entrada] con llave <porfa>"
+  DestrabarPuerta:
+    data:
+      - sentences:
+          - "(destrabar|destraba|desbloquear|desbloquea) [<art>] puerta [principal|de entrada] <porfa>"
+          - "<abrir> [<art>] puerta [principal|de entrada] <porfa>"
+  AbrirPorton:
+    data:
+      - sentences:
+          - "<abrir> [<art>] (porton|garage|garaje|cochera) [del (garage|garaje)] <porfa>"
+  CerrarPorton:
+    data:
+      - sentences:
+          - "<cerrar> [<art>] (porton|garage|garaje|cochera) [del (garage|garaje)] <porfa>"
+  ActivarAlarma:
+    data:
+      - sentences:
+          - "(<prender>|armar|arma|armame) [<art>] alarma <porfa>"
+  DesactivarAlarma:
+    data:
+      - sentences:
+          - "(<apagar>|desarmar|desarma) [<art>] alarma <porfa>"
+  ActivarRiego:
+    data:
+      - sentences:
+          - "(<prender>|regar|rega|riega) [<art>] (riego|patio|plantas|jardin) <porfa>"
+  DetenerRiego:
+    data:
+      - sentences:
+          - "(<apagar>|detener|deten|para|parar|frena) [<art>] riego <porfa>"
+  ConsultarTemperatura:
+    data:
+      - sentences:
+          - "(que|cual es la|cuanta) temperatura (hace|hay) <lugar>"
+          - "cuantos grados hace <lugar>"
+          - "(que|cual es la) temperatura <lugar>"
+  ConsultarHumedad:
+    data:
+      - sentences:
+          - "(que|cuanta|cual es la) humedad (hace|hay) <lugar>"
+  ConsultarAberturas:
+    data:
+      - sentences:
+          - "(hay|quedo|quedaron|queda) [alguna|algo] [<art>] [ventana|ventanas|puerta|puertas|abertura|aberturas] (abierta|abiertas|abierto)"
+          - "(esta|estan) (todo cerrado|todas las ventanas cerradas|todo bien)"
+  ActivarEscena:
+    data:
+      - sentences:
+          - "(<prender>|modo) [el] [modo] {escena} <porfa>"
+          - "[<prender>|pone|poner] [la|el] (escena|modo) [de|del] {escena} <porfa>"
+          - "{escena}"
+  ApagarTodo:
+    data:
+      - sentences:
+          - "<apagar> (todo|todas las luces|las luces de toda la casa) <porfa>"
+
+lists:
+  dispositivo:
+    values:
+      - in: "(luz|luces|lampara|velador)"
+        out: luz
+      - in: "(ventilador|ventilador de techo)"
+        out: ventilador
+      - in: "(aire|aire acondicionado)"
+        out: aire
+      - in: "(tele|television|televisor|tv)"
+        out: tele
+      - in: "(enchufe|toma)"
+        out: enchufe
+  area:
+    values:
+      - living
+      - cocina
+      - comedor
+      - in: "(dormitorio|pieza|habitacion|cuarto)"
+        out: dormitorio
+      - in: "(bano|toilette)"
+        out: bano
+      - patio
+      - in: "(oficina|escritorio)"
+        out: oficina
+  brillo:
+    range:
+      from: 0
+      to: 100
+  temperatura:
+    range:
+      from: 16
+      to: 30
+  escena:
+    values:
+      - in: "(noche|buenas noches|dormir)"
+        out: noche
+      - in: "(cine|pelicula)"
+        out: cine
+      - in: "(fuera|ausente|me voy|salgo)"
+        out: fuera
+      - in: "(buen dia|buenos dias|dia|despertar|manana)"
+        out: dia
+
+respuestas:
+  EncenderDispositivo: "Listo, prendí {dispositivo}{en_area}."
+  ApagarDispositivo: "Listo, apagué {dispositivo}{en_area}."
+  AjustarBrillo: "Luz{en_area} al {brillo} por ciento."
+  FijarTemperatura: "Temperatura{en_area} en {temperatura} grados."
+  SubirPersiana: "Subiendo la persiana{en_area}."
+  BajarPersiana: "Bajando la persiana{en_area}."
+  ConsultarHora: "Son las {hora}."
+  _no_entendido: "No te entendí."

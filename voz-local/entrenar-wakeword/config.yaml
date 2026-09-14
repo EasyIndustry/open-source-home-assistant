@@ -1,0 +1,18 @@
+# Configuración de la wake word a entrenar. Editá 'palabra' y ajustá cantidades.
+palabra: "che casa"          # la frase de activación (probá 2-4 sílabas, poco común)
+nombre_modelo: "che_casa"    # nombre del .onnx resultante (sin extensión)
+idioma: es
+
+# Generación de positivos (piper-sample-generator)
+muestras_positivas: 20000    # más muestras = mejor, más tiempo de generación
+voces: es                    # familia de voces en español
+
+# Entrenamiento
+pasos: 50000
+learning_rate: 0.0001
+
+# --- Al terminar, para usar el modelo en el asistente ---
+# 1. Copiar el .onnx a voz-local/modelos/wakeword/che_casa.onnx
+# 2. En asistente.py, agregar "che_casa" a WAKE_WORDS y hacer que
+#    openwakeword.model.Model lo cargue por ruta (wakeword_models=[ruta]).
+#    (cambio chico, se hace cuando el modelo exista)

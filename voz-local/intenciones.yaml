@@ -1,0 +1,89 @@
+# Intenciones en formato hassil (el motor de Home Assistant Assist).
+# Sintaxis: (a|b) alternativas · [x] opcional · {lista} slot · <regla> expansión
+# Las plantillas van SIN tildes: el texto se normaliza antes de reconocer.
+
+language: es
+
+expansion_rules:
+  art: "(el|la|los|las|al|a la)"
+  de: "(del|de la|de los|de las|en el|en la|en|de)"
+  prender: "(prender|encender|activar|poner|prende|prendeme|encende|enciende|encendeme|activa|pone|poneme|pon)"
+  apagar: "(apagar|desactivar|cortar|apaga|apagame|desactiva|corta)"
+  porfa: "[por favor|porfa]"
+
+intents:
+  EncenderDispositivo:
+    data:
+      - sentences:
+          - "<prender> [<art>] {dispositivo} [[<de>] [<art>] {area}] <porfa>"
+          - "<prender> [<art>] {dispositivo} <porfa>"
+  ApagarDispositivo:
+    data:
+      - sentences:
+          - "<apagar> [<art>] {dispositivo} [[<de>] [<art>] {area}] <porfa>"
+  AjustarBrillo:
+    data:
+      - sentences:
+          - "(poner|ajustar|dejar|pone|poneme|ajusta|deja|pon) [<art>] (luz|luces) [[<de>] [<art>] {area}] (al|a|en) {brillo} [%|por ciento] <porfa>"
+          - "brillo [[<de>] [<art>] {area}] (al|a|en) {brillo} [%|por ciento]"
+  FijarTemperatura:
+    data:
+      - sentences:
+          - "(poner|fijar|dejar|pone|poneme|pon|deja|fija|configura) [<art>] (aire|calefaccion|temperatura|termostato) [[<de>] [<art>] {area}] (a|en) {temperatura} [grados]"
+  SubirPersiana:
+    data:
+      - sentences:
+          - "(subir|abrir|levantar|subi|sube|abri|abre|levanta) [<art>] (persiana|persianas|cortina|cortinas) [[<de>] [<art>] {area}]"
+  BajarPersiana:
+    data:
+      - sentences:
+          - "(bajar|cerrar|baja|bajame|cerra|cierra) [<art>] (persiana|persianas|cortina|cortinas) [[<de>] [<art>] {area}]"
+  ConsultarHora:
+    data:
+      - sentences:
+          - "(que hora[s] [es]|decime la hora|dime la hora)"
+
+lists:
+  dispositivo:
+    values:
+      - in: "(luz|luces|lampara|velador)"
+        out: luz
+      - in: "(ventilador|ventilador de techo)"
+        out: ventilador
+      - in: "(aire|aire acondicionado)"
+        out: aire
+      - in: "(tele|television|televisor|tv)"
+        out: tele
+      - in: "(enchufe|toma)"
+        out: enchufe
+  area:
+    values:
+      - living
+      - cocina
+      - comedor
+      - in: "(dormitorio|pieza|habitacion|cuarto)"
+        out: dormitorio
+      - in: "(bano|toilette)"
+        out: bano
+      - patio
+      - in: "(oficina|escritorio)"
+        out: oficina
+  brillo:
+    range:
+      from: 0
+      to: 100
+  temperatura:
+    range:
+      from: 16
+      to: 30
+
+# Respuestas habladas (formato Python). Slots disponibles por nombre.
+respuestas:
+  EncenderDispositivo: "Listo, prendí {dispositivo}{en_area}."
+  ApagarDispositivo: "Listo, apagué {dispositivo}{en_area}."
+  AjustarBrillo: "Luz{en_area} al {brillo} por ciento."
+  FijarTemperatura: "Temperatura{en_area} en {temperatura} grados."
+  SubirPersiana: "Subiendo la persiana{en_area}."
+  BajarPersiana: "Bajando la persiana{en_area}."
+  ConsultarHora: "Son las {hora}."
+  _no_entendido: "No te entendí."

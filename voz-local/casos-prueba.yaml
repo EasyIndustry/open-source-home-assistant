@@ -1,0 +1,16 @@
+# Casos de prueba para pulir los intents. Cada caso: la frase, el intent esperado y los slots.
+# Crecé esta lista con los comandos que fallen en la vida real (mirá el panel NLU de la web).
+# Se corre con:  .venv/bin/python asistente.py --autotest --casos casos-prueba.yaml \
+#                  --comparar whisper-base,vosk-gramatica --comparar-intent hassil,hassil-fuzzy
+casos:
+  - ["Prendé la luz del living",                    EncenderDispositivo, {dispositivo: luz, area: living}]
+  - ["Apagá el ventilador de la pieza",             ApagarDispositivo,   {dispositivo: ventilador, area: dormitorio}]
+  - ["Poné la luz de la cocina al cuarenta por ciento", AjustarBrillo,   {area: cocina, brillo: 40}]
+  - ["Poné el aire del dormitorio en veintidós grados", FijarTemperatura,{area: dormitorio, temperatura: 22}]
+  - ["Bajá las persianas del comedor",              BajarPersiana,       {area: comedor}]
+  - ["Subí la persiana del living",                 SubirPersiana,       {area: living}]
+  - ["Prendé la tele",                              EncenderDispositivo, {dispositivo: tele}]
+  - ["Qué hora es",                                 ConsultarHora,       {}]
+  # casos difíciles (acentos, sinónimos, números en palabras) — agregá los tuyos
+  - ["Encendé el velador del cuarto",               EncenderDispositivo, {dispositivo: luz, area: dormitorio}]
+  - ["Apagá las luces del baño",                    ApagarDispositivo,   {dispositivo: luz, area: bano}]

@@ -1,0 +1,19 @@
+# Asistente de voz local — dependencias (Python 3.10+). Instalar: pip install -r requirements.txt
+# STT
+faster-whisper==1.2.1
+ctranslate2==4.8.2
+vosk==0.3.45
+# Wake word
+openwakeword==0.6.0
+onnxruntime==1.30.0
+# Intención
+hassil==3.12.0
+rapidfuzz==3.14.6
+scikit-learn==1.9.1   # solo para el motor experimental intent-ml
+joblib==1.6.0         # idem
+# TTS
+piper-tts==1.8.0
+# Utilidades
+numpy==2.5.3
+scipy==1.18.1
+PyYAML==6.0.3

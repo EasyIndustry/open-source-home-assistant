@@ -1,0 +1,21 @@
+# Entornos
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Modelos descargables (ver voz-local: descargar_modelos / requirements)
+voz-local/modelos/*
+!voz-local/modelos/.gitkeep
+
+# Audio y salidas locales
+*.wav
+*.raw
+*.webm
+*.log
+
+# Editor / SO
+.vscode/
+.idea/
+.DS_Store
+*.swp
