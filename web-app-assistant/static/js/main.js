@@ -463,7 +463,7 @@ $('#tabs').onclick = e => {
 qa.setIntents(['EncenderDispositivo', 'ApagarDispositivo', 'AjustarBrillo', 'FijarTemperatura', 'SubirPersiana', 'BajarPersiana', 'ConsultarHora',
   'AbrirVentana', 'CerrarVentana', 'TrabarPuerta', 'DestrabarPuerta', 'AbrirPorton', 'CerrarPorton', 'ActivarAlarma', 'DesactivarAlarma',
   'ActivarRiego', 'DetenerRiego', 'ConsultarTemperatura', 'ConsultarHumedad', 'ConsultarAberturas', 'ActivarEscena', 'ApagarTodo']);
-setInterval(() => $('#clock').textContent = new Date().toLocaleTimeString('es-AR'), 1000);
+setInterval(() => $('#clock').textContent = new Date().toLocaleTimeString('es-AR', { hour12: false }), 1000);
 
 // ------------------------------------------------------------------ ruteo PipeWire (voz-local-mic / voz-local-tts)
 async function pollPipewire() {
